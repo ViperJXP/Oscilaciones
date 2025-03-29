@@ -3,9 +3,7 @@
 Created on Wed Jan 22 11:33:24 2025
 
 @author: Josué Hernández Torres
-"""
-# -*- coding: utf-8 -*-
-"""
+
 ANÁLISIS DE PARTÍCULA OSCILANTE CON CÁLCULO DE TRABAJO - PROGRAMA COMPLETO
 """
 import numpy as np
