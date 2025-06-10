@@ -10,6 +10,7 @@ Si hubo algún error o, simplemente, se desea analizar un intervalo diferente al
 ## Productos
 Los resultados salen en una ventana de comunicaciones, sin embargo, se plasman también en la parte inferior izquierda de la ventana donde se cargan los datos.
 Otro producto es una gráfica en configuración (1,3), i.e 1 columna y 3 filas de gráficas, ordenadas de la siguiente manera:
+
   1.-Superior: "Distancias VS Tiempos"; Esta gráfica se crea con sólo 2 marcas en el eje y, el 0 y "r" que equivale al tamaño del radio de la partícula que se trabaja, para el que también se sombrea con una franja gris, por otro lado, la franja roja, equivale al radio del spot utilizado.  
   
   2.-Medio: Velocidades VS Tiempos
