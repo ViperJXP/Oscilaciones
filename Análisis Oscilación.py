@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 22 11:33:24 2025
-
 @author: Josué Hernández Torres
-
 ANÁLISIS DE PARTÍCULA OSCILANTE CON CÁLCULO DE TRABAJO - PROGRAMA COMPLETO
 """
 import numpy as np
@@ -167,17 +165,19 @@ class ParticleAnalysisApp:
             df = pd.read_csv(
                 self.file_path.get(), 
                 encoding=result['encoding'], 
-                usecols=['X','Y'],
+                usecols=['X','Y','Z(um)'],
                 nrows=min(self.nfa.get(), 10000)
             )
             
             # Procesar datos
             x_part = df['X'].values
             y_part = df['Y'].values
+            z_part = df['Z(um)'].values
             
             escala = self.dp.get()/self.dp_pix.get()
-            Xp = (x_part - self.csx.get()) * escala
+            Xp = (-x_part + self.csx.get()) * escala
             Yp = (-y_part + self.csy.get()) * escala
+            Zp = (z_part)*1e-6                   #Estos ya están en micras
             
             self.raw_D = np.sqrt(Xp**2 + Yp**2)
             n = len(Xp)
@@ -198,7 +198,7 @@ class ParticleAnalysisApp:
                 self.on_select,
                 'horizontal',
                 useblit=True,
-                props=dict(alpha=0.5, facecolor='yellow'),
+                props=dict(alpha=0.5, facecolor='green'),
                 interactive=True
             )
             
@@ -407,7 +407,7 @@ class ParticleAnalysisApp:
             dt = 1/self.fps.get()
             v = np.diff(D)/dt
             a = np.diff(v)/dt
-            
+            print(np.mean(D))
             # Cálculo de masa y fuerza
             dp = self.dp.get()
             Volumen_sio2 = 4/3 * np.pi * ((dp/2)**3)
@@ -446,7 +446,7 @@ class ParticleAnalysisApp:
             self.plot_work_results(work_results)
             self.plot_analysis_results(t, D, v, a, dp, self.ds.get(), frecuencia)
             
-            # Mostrar resumen
+            #Mostrar resumen
             messagebox.showinfo(
                 "Resultados", 
                 "\n".join(f"{k}: {v}" for k, v in self.last_results.items())
